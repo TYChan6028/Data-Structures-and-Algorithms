@@ -3,8 +3,8 @@
 
 typedef struct heap Heap;
 
-Heap *heap_create(int a[], int size);
-void Heapsort(int a[], int size);
+Heap *heap_create(int a[], int length);
+void Heapsort(int a[], int length);
 int heap_get_size(Heap *h);
 int heap_get_max(Heap *h);
 int heap_pop_max(Heap *h);

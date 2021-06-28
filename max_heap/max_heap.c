@@ -40,13 +40,13 @@ void max_heapify(Heap *h, int i)
 }
 
 
-Heap *heap_create(int a[], int size)
+Heap *heap_create(int a[], int length)
 {
     Heap *h = malloc(sizeof(Heap));
-    h->size = size;
-    h->values = malloc(sizeof(int) * ALLOC_LENGTH * (size / ALLOC_LENGTH + 1));
+    h->size = length;
+    h->values = malloc(sizeof(int) * ALLOC_LENGTH * (length / ALLOC_LENGTH + 1));
 
-    memcpy(h->values, a, sizeof(int) * size);
+    memcpy(h->values, a, sizeof(int) * length);
 
     for (int i = (h->size - 1) / 2; i >= 0; --i)
         max_heapify(h, i);
@@ -55,9 +55,9 @@ Heap *heap_create(int a[], int size)
 }
 
 
-void Heapsort(int a[], int size)
+void Heapsort(int a[], int length)
 {
-    Heap *h = heap_create(a, size);
+    Heap *h = heap_create(a, length);
     
     for (int i = h->size - 1; i >= 1; --i)
     {
@@ -66,7 +66,7 @@ void Heapsort(int a[], int size)
         max_heapify(h, ROOT);
     }
 
-    memcpy(a, h->values, sizeof(int) * size);
+    memcpy(a, h->values, sizeof(int) * length);
 
     heap_delete(h);
 }
