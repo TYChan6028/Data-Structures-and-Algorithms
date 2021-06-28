@@ -1,8 +1,8 @@
-main: main.c heap.o
-	gcc -o main main.c heap.o
+main: main.c max_heap.o
+	gcc -o main main.c max_heap.o
 
-heap.o: heap.h heap.c
-	gcc -c heap.c
+max_heap.o: max_heap.h max_heap.c
+	gcc -c max_heap.c
 
 clean:
 	rm main *.o

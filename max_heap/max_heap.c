@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
-#include "heap.h"
+#include "max_heap.h"
 
 #define LENGTH 256
 #define ROOT 0

@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "heap.h"
+#include "max_heap.h"
 
 int main(void)
 {
