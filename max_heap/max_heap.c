@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <limits.h>
 #include "max_heap.h"
 
@@ -42,9 +43,8 @@ Heap *heap_create(int a[], int size)
     h->size = size;
     h->values = malloc(sizeof(int) * LENGTH * (size / LENGTH + 1));
 
-    for (int i = 0; i < size; ++i)
-        h->values[i] = a[i];
-    
+    memcpy(h->values, a, sizeof(int) * size);
+
     for (int i = (h->size - 1) / 2; i >= 0; --i)
         max_heapify(h, i);
 
@@ -62,8 +62,7 @@ void Heapsort(int a[], int size)
         max_heapify(h, ROOT);
     }
 
-    for (int i = 0; i < size; ++i)
-        a[i] = h->values[i];
+    memcpy(a, h->values, sizeof(int) * size);
 
     heap_delete(h);
 }
