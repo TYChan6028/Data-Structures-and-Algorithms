@@ -13,11 +13,13 @@
 #define FAIL_IF_MSG(EXP,MSG)({if(EXP){printf(MSG "\n");exit(EXIT_FAILURE);}})
 #define EXCHANGE(A,B)({A-=(B=(A+=B)-B);})
 
+
 struct heap
 {
     int size;
     int *values;
 };
+
 
 void max_heapify(Heap *h, int i)
 {
@@ -37,6 +39,7 @@ void max_heapify(Heap *h, int i)
     }
 }
 
+
 Heap *heap_create(int a[], int size)
 {
     Heap *h = malloc(sizeof(Heap));
@@ -50,6 +53,7 @@ Heap *heap_create(int a[], int size)
 
     return h;
 }
+
 
 void Heapsort(int a[], int size)
 {
@@ -67,15 +71,18 @@ void Heapsort(int a[], int size)
     heap_delete(h);
 }
 
+
 int heap_get_size(Heap *h)
 {
     return h->size;
 }
 
+
 int heap_get_max(Heap *h)
 {
     return h->values[ROOT];
 }
+
 
 int heap_pop_max(Heap *h)
 {
@@ -86,6 +93,7 @@ int heap_pop_max(Heap *h)
 
     return max_key;
 }
+
 
 void heap_increase_key(Heap *h, int i, int key)
 {
@@ -101,12 +109,14 @@ void heap_increase_key(Heap *h, int i, int key)
     }
 }
 
+
 void heap_insert_key(Heap *h, int key)
 {
     (h->size)++;
     h->values[h->size - 1] = INT_MIN;
     heap_increase_key(h, h->size - 1, key);
 }
+
 
 void heap_delete(Heap *h)
 {
@@ -115,6 +125,7 @@ void heap_delete(Heap *h)
     free(h);
     h = NULL;
 }
+
 
 void print_heap(Heap *h)
 {
