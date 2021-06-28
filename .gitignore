@@ -54,3 +54,6 @@ dkms.conf
 
 # MacOSX Specific
 .DS_Store
+
+# Vim related
+.*.c.swp
