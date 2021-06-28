@@ -4,7 +4,7 @@
 #include <limits.h>
 #include "max_heap.h"
 
-#define LENGTH 256
+#define ALLOC_LENGTH 256
 #define ROOT 0
 #define PARENT (int)((i - 1) / 2)
 #define LEFT_CHILD (int)(2 * i + 1)
@@ -44,7 +44,7 @@ Heap *heap_create(int a[], int size)
 {
     Heap *h = malloc(sizeof(Heap));
     h->size = size;
-    h->values = malloc(sizeof(int) * LENGTH * (size / LENGTH + 1));
+    h->values = malloc(sizeof(int) * ALLOC_LENGTH * (size / ALLOC_LENGTH + 1));
 
     memcpy(h->values, a, sizeof(int) * size);
 
