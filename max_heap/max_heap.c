@@ -27,10 +27,9 @@ void max_heapify(Heap *h, int i)
     FAIL_IF(i < ROOT || i >= h->size, "IndexError (max_heapify): index out of bounds");
     
     int max = (LEFT_CHILD < h->size) && (h->values[LEFT_CHILD] > h->values[i]) ? LEFT_CHILD : i;
-
     if (RIGHT_CHILD < h->size && h->values[RIGHT_CHILD] > h->values[max])
         max = RIGHT_CHILD;
-
+    
     if (max != i)
     {
         EXCHANGE(h->values[max], h->values[i]);  // swap keys
