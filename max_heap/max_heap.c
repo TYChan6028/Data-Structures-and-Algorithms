@@ -10,7 +10,7 @@
 #define LEFT_CHILD (int)(2 * i + 1)
 #define RIGHT_CHILD (int)(2 * i + 2)
 
-#define FAIL_IF_MSG(EXP,MSG)({if(EXP){printf(MSG "\n");exit(EXIT_FAILURE);}})
+#define FAIL_IF(EXP,MSG)({if(EXP){printf(MSG "\n");exit(EXIT_FAILURE);}})
 #define EXCHANGE(A,B)({A-=(B=(A+=B)-B);})
 
 
@@ -24,12 +24,10 @@ struct heap
 
 void max_heapify(Heap *h, int i)
 {
-    FAIL_IF_MSG(i < ROOT || i >= h->size, "IndexError (max_heapify): index out of bounds");
+    FAIL_IF(i < ROOT || i >= h->size, "IndexError (max_heapify): index out of bounds");
     
-    int max;
-    
-    max = (LEFT_CHILD < h->size) && (h->values[LEFT_CHILD] > h->values[i]) ?
-        LEFT_CHILD : i;
+    int max = (LEFT_CHILD < h->size) && (h->values[LEFT_CHILD] > h->values[i]) ? LEFT_CHILD : i;
+
     if (RIGHT_CHILD < h->size && h->values[RIGHT_CHILD] > h->values[max])
         max = RIGHT_CHILD;
 
@@ -43,10 +41,12 @@ void max_heapify(Heap *h, int i)
 
 Heap *heap_create(int a[], int length)
 {
-    Heap *h = malloc(sizeof(Heap));
+    Heap *h;
+
+    FAIL_IF(!(h = malloc(sizeof(Heap))), "MallocFailure: could not allocate heap");
     h->size = length;
     h->reserved_size = ALLOC_LENGTH * (length / ALLOC_LENGTH + 1);
-    h->values = malloc(sizeof(int) * h->reserved_size);
+    FAIL_IF(!(h->values = malloc(sizeof(int) * h->reserved_size)), "MallocFailure: could not allocate heap array");
 
     memcpy(h->values, a, sizeof(int) * length);
 
@@ -99,8 +99,8 @@ int heap_pop_max(Heap *h)
 
 void heap_increase_key(Heap *h, int i, int key)
 {
-    FAIL_IF_MSG(i < ROOT || i >= h->size, "IndexError (heap_increase_key): index out of bounds");
-    FAIL_IF_MSG(key < h->values[i], "ValueError (heap_increase_key): entered key has to be greater than current key");
+    FAIL_IF(i < ROOT || i >= h->size, "IndexError (heap_increase_key): index out of bounds");
+    FAIL_IF(key < h->values[i], "ValueError (heap_increase_key): entered key has to be greater than current key");
 
     h->values[i] = key;
 
@@ -116,11 +116,17 @@ void heap_insert_key(Heap *h, int key)
 {
     if (h->size >= h->reserved_size)
     {
-        //printf("reallocating new memory\n");
-        //printf("old size = %d\n", h->reserved_size);
+        void *tmp;
+        
         h->reserved_size += ALLOC_LENGTH;
-        //printf("new size = %d\n", h->reserved_size);
-        h->values = realloc(h->values, sizeof(int) * h->reserved_size);
+        
+        if ((tmp = realloc(h->values, sizeof(int) * h->reserved_size)))
+            h->values = tmp;
+        else
+        {
+            printf("ReallocFailure: could not allocate new heap size");
+            exit(EXIT_FAILURE);
+        }
     }
 
     (h->size)++;
