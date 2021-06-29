@@ -17,6 +17,7 @@
 struct heap
 {
     int size;
+    int reserved_size;
     int *values;
 };
 
@@ -44,11 +45,12 @@ Heap *heap_create(int a[], int length)
 {
     Heap *h = malloc(sizeof(Heap));
     h->size = length;
-    h->values = malloc(sizeof(int) * ALLOC_LENGTH * (length / ALLOC_LENGTH + 1));
+    h->reserved_size = ALLOC_LENGTH * (length / ALLOC_LENGTH + 1);
+    h->values = malloc(sizeof(int) * h->reserved_size);
 
     memcpy(h->values, a, sizeof(int) * length);
 
-    for (int i = (h->size - 1) / 2; i >= 0; --i)
+    for (int i = (h->size - 1) / 2; i >= ROOT; --i)
         max_heapify(h, i);
 
     return h;
@@ -59,7 +61,7 @@ void Heapsort(int a[], int length)
 {
     Heap *h = heap_create(a, length);
     
-    for (int i = h->size - 1; i >= 1; --i)
+    for (int i = h->size - 1; i > ROOT; --i)
     {
         EXCHANGE(h->values[ROOT], h->values[i]);
         (h->size)--;
@@ -112,6 +114,15 @@ void heap_increase_key(Heap *h, int i, int key)
 
 void heap_insert_key(Heap *h, int key)
 {
+    if (h->size >= h->reserved_size)
+    {
+        //printf("reallocating new memory\n");
+        //printf("old size = %d\n", h->reserved_size);
+        h->reserved_size += ALLOC_LENGTH;
+        //printf("new size = %d\n", h->reserved_size);
+        h->values = realloc(h->values, sizeof(int) * h->reserved_size);
+    }
+
     (h->size)++;
     h->values[h->size - 1] = INT_MIN;
     heap_increase_key(h, h->size - 1, key);
