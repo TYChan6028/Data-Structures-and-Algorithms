@@ -27,4 +27,12 @@ int main(void)
     heap_insert_key(h, 10);
     printf("heap size: %d\n", heap_get_size(h));
     print_heap(h);
+    printf("\n");
+
+    for (int i=0; i<1000; ++i)
+    {
+        heap_insert_key(h, i);
+    }
+    print_heap(h);
+    printf("heap size: %d\n", heap_get_size(h));
 }
