@@ -44,3 +44,16 @@ void test_stack_pop_from_empty(void)
 {
     TEST_IGNORE();
 }
+
+int main(void)
+{
+    UNITY_BEGIN();
+    RUN_TEST(test_stack_is_empty);
+    RUN_TEST(test_stack_push);
+    RUN_TEST(test_stack_is_full);
+    RUN_TEST(test_stack_push_to_full);
+    RUN_TEST(test_stack_pop);
+    RUN_TEST(test_stack_pop_from_empty);
+
+    return UNITY_END();
+}
