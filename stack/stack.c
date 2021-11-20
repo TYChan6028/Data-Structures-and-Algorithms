@@ -37,3 +37,10 @@ int stack_push(Stack *S, int x)
     
     return 0;
 }
+
+int *stack_pop(Stack *S)
+{
+    if (S->top == -1) return NULL;
+
+    return &(S->values[(S->top)--]);
+}
