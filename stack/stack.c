@@ -29,3 +29,8 @@ void stack_delete(Stack *S)
     free(S);
     S = NULL;
 }
+
+bool stack_is_empty(Stack *S)
+{
+    return (S->top == -1);
+}
