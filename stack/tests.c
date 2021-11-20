@@ -17,7 +17,7 @@ void tearDown(void)
 
 void test_stack_is_empty(void)
 {
-    TEST_IGNORE();
+    TEST_ASSERT(stack_is_empty(S));
 }
 
 void test_stack_is_full(void)
