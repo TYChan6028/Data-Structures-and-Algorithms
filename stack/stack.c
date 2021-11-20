@@ -29,6 +29,11 @@ bool stack_is_empty(Stack *S)
     return (S->top == -1);
 }
 
+bool stack_is_full(Stack *S)
+{
+    return (S->top == S->max_size - 1);
+}
+
 int stack_push(Stack *S, int x)
 {
     if (S->top == S->max_size - 1) return -1;
