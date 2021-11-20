@@ -18,6 +18,7 @@ void tearDown(void)
 void test_stack_is_empty(void)
 {
     TEST_ASSERT(stack_is_empty(S));
+    TEST_ASSERT_EQUAL_INT(-1, S->top);
 }
 
 void test_stack_is_full(void)
