@@ -33,7 +33,7 @@ void test_stack_push(void)
         TEST_ASSERT_EQUAL_INT(0, stack_push(S, arr[i]));
         TEST_ASSERT_EQUAL_INT(i, S->top);
     }
-    // TEST_ASSERT_EQUAL_INT_ARRAY(arr, S->values, STACK_SIZE);
+    TEST_ASSERT_EQUAL_INT_ARRAY(arr, S->values, STACK_SIZE);
 }
 
 void test_stack_push_to_full(void)
