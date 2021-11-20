@@ -46,6 +46,9 @@ int stack_push(Stack *S, int x)
 int *stack_pop(Stack *S)
 {
     if (stack_is_empty(S)) return NULL;
+    
+    int *x = &(S->values[(S->top)]);
+    (S->top)--;
 
-    return &(S->values[(S->top)--]);
+    return x;
 }
