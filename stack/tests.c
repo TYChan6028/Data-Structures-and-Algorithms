@@ -27,7 +27,13 @@ void test_stack_is_full(void)
 
 void test_stack_push(void)
 {
-    TEST_IGNORE();
+    int arr[] = {1, 2, 3};
+    for (int i = 0; i < STACK_SIZE; ++i)
+    {
+        TEST_ASSERT_EQUAL_INT(0, stack_push(S, arr[i]));
+        TEST_ASSERT_EQUAL_INT(i, S->top);
+    }
+    // TEST_ASSERT_EQUAL_INT_ARRAY(arr, S->values, STACK_SIZE);
 }
 
 void test_stack_push_to_full(void)
