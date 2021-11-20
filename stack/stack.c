@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include "stack.h"
 
@@ -8,7 +9,7 @@ struct stack
     int *values;
     int top;
     int max_size;
-}
+};
 
 Stack *stack_create(int max_stack_size)
 {

@@ -3,7 +3,7 @@
 
 #define STACK_SIZE 3
 
-Stack *S;
+static Stack *S;
 
 void setUp(void)
 {
