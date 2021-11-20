@@ -66,7 +66,8 @@ void test_stack_pop(void)
 
 void test_stack_pop_from_empty(void)
 {
-    TEST_IGNORE();
+    TEST_ASSERT_EQUAL_PTR(NULL, stack_pop(S));
+    TEST_ASSERT_EQUAL_INT(-1, S->top);
 }
 
 int main(void)
