@@ -36,7 +36,7 @@ bool stack_is_full(Stack *S)
 
 int stack_push(Stack *S, int x)
 {
-    if (S->top == S->max_size - 1) return -1;
+    if (stack_is_full(S)) return -1;
 
     S->values[++(S->top)] = x;
     
@@ -45,7 +45,7 @@ int stack_push(Stack *S, int x)
 
 int *stack_pop(Stack *S)
 {
-    if (S->top == -1) return NULL;
+    if (stack_is_empty(S)) return NULL;
 
     return &(S->values[(S->top)--]);
 }
