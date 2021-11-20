@@ -43,7 +43,16 @@ void test_stack_push_to_full(void)
 
 void test_stack_pop(void)
 {
-    TEST_IGNORE();
+    int arr[] = {1, 2, 3};
+    for (int i = 0; i < STACK_SIZE; ++i)
+    {
+        stack_push(S, arr[i]);
+    }
+    for (int i = STACK_SIZE - 1; i >= 0; --i)
+    {
+        TEST_ASSERT_EQUAL_INT(arr[i], *(stack_pop(S)));
+        TEST_ASSERT_EQUAL_INT(i - 1, S->top);
+    }
 }
 
 void test_stack_pop_from_empty(void)
