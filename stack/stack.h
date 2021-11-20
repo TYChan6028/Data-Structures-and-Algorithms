@@ -4,7 +4,12 @@
 
 #include <stdbool.h>
 
-typedef struct stack Stack;
+typedef struct
+{
+    int *values;
+    int top;
+    int max_size;
+} Stack;
 
 Stack *stack_create(int max_stack_size);
 void stack_delete(Stack *S);
