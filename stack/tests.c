@@ -22,7 +22,13 @@ void test_stack_is_empty(void)
 
 void test_stack_is_full(void)
 {
-    TEST_IGNORE();
+    int arr[] = {1, 2, 3};
+    for (int i = 0; i < STACK_SIZE; ++i)
+    {
+        stack_push(S, arr[i]);
+    }
+    TEST_ASSERT(stack_is_full(S));
+    TEST_ASSERT_EQUAL_INT(STACK_SIZE - 1, S->top);
 }
 
 void test_stack_push(void)
