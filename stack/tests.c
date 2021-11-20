@@ -49,7 +49,9 @@ void test_stack_push(void)
 
 void test_stack_push_to_full(void)
 {
-    TEST_IGNORE();
+    fill_stack(S);
+    TEST_ASSERT_EQUAL_INT(-1, stack_push(S, 4));
+    TEST_ASSERT_EQUAL_INT(STACK_SIZE - 1, S->top);
 }
 
 void test_stack_pop(void)
