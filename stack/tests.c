@@ -4,6 +4,15 @@
 #define STACK_SIZE 3
 
 static Stack *S;
+static int arr[] = {1, 2, 3};
+
+void fill_stack(Stack *S)
+{
+    for (int i = 0; i < STACK_SIZE; ++i)
+    {
+        stack_push(S, arr[i]);
+    }
+}
 
 void setUp(void)
 {
@@ -23,18 +32,13 @@ void test_stack_is_empty(void)
 
 void test_stack_is_full(void)
 {
-    int arr[] = {1, 2, 3};
-    for (int i = 0; i < STACK_SIZE; ++i)
-    {
-        stack_push(S, arr[i]);
-    }
+    fill_stack(S);
     TEST_ASSERT(stack_is_full(S));
     TEST_ASSERT_EQUAL_INT(STACK_SIZE - 1, S->top);
 }
 
 void test_stack_push(void)
 {
-    int arr[] = {1, 2, 3};
     for (int i = 0; i < STACK_SIZE; ++i)
     {
         TEST_ASSERT_EQUAL_INT(0, stack_push(S, arr[i]));
@@ -50,11 +54,7 @@ void test_stack_push_to_full(void)
 
 void test_stack_pop(void)
 {
-    int arr[] = {1, 2, 3};
-    for (int i = 0; i < STACK_SIZE; ++i)
-    {
-        stack_push(S, arr[i]);
-    }
+    fill_stack(S);
     for (int i = STACK_SIZE - 1; i >= 0; --i)
     {
         TEST_ASSERT_EQUAL_INT(arr[i], *(stack_pop(S)));
