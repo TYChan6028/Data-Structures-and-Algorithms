@@ -23,11 +23,20 @@ void test_queue_is_empty(void)
     TEST_ASSERT_EQUAL_INT(3, Q->rear);
 }
 
+void test_enqueue(void)
+{
+    TEST_ASSERT_EQUAL_INT(0, enqueue(Q, arr[0]));
+    TEST_ASSERT_EQUAL_INT_ARRAY(arr, Q->values, 1);
+    TEST_ASSERT_EQUAL_INT(3, Q->front);
+    TEST_ASSERT_EQUAL_INT(0, Q->rear);
+}
+
 int main(void)
 {
     UNITY_BEGIN();
 
     RUN_TEST(test_queue_is_empty);
+    RUN_TEST(test_enqueue);
 
     return UNITY_END();
 }
