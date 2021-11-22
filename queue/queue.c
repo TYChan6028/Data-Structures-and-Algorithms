@@ -23,3 +23,8 @@ void queue_delete(Queue *Q)
     free(Q);
     Q = NULL;
 }
+
+bool queue_is_empty(Queue *Q)
+{
+    return (Q->front == Q->rear);
+}

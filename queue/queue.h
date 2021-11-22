@@ -14,6 +14,7 @@ typedef struct
 
 Queue *queue_create(int max_queue_size);
 void queue_delete(Queue *Q);
+bool queue_is_empty(Queue *Q);
 
 
 #endif
