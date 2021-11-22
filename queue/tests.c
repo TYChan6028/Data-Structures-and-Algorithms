@@ -7,6 +7,12 @@
 static Queue *Q;
 static int arr[] = {1, 2, 3};
 
+void fill_queue(Queue *Q)
+{
+    for (int i = 0; i < QUEUE_SIZE; ++i)
+        enqueue(Q, arr[i]);
+}
+
 void setUp(void)
 {
     Q = queue_create(QUEUE_SIZE);
