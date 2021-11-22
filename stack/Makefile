@@ -1,9 +1,19 @@
-CC=gcc
+INCLUDE_DIRS = ../unity/ unity/
+VPATH = $(INCLUDE_DIRS)
+
+CC = gcc
+CFLAGS += $(addprefix -I , $(INCLUDE_DIRS))
 
 all: tests
 
-tests: tests.c ../unity/unity.c stack.c stack.h
-	$(CC) stack.c tests.c ../unity/unity.c -o main -I ../unity/
+tests: tests.c stack.o unity.o
+	$(CC) $(CFLAGS) $^ -o $@
+
+stack.o: stack.c stack.h
+	$(CC) -c $<
+
+unity.o: unity.c unity.h unity_internals.h 
+	$(CC) -c $<
 
 clean:
-	rm main *.o
+	rm tests *.o
