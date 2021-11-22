@@ -28,3 +28,13 @@ bool queue_is_empty(Queue *Q)
 {
     return (Q->front == Q->rear);
 }
+
+int enqueue(Queue *Q, int x)
+{
+    int new_rear = (Q->rear + 1) % Q->max_size; 
+    if (Q->front == new_rear) return -1;
+
+    Q->values[Q->rear = new_rear] = x;
+
+    return 0;
+}
