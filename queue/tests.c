@@ -38,12 +38,22 @@ void test_enqueue(void)
     TEST_ASSERT_EQUAL_INT(0, Q->rear);
 }
 
+void test_queue_is_full_wo_wrapping(void)
+{
+    fill_queue(Q);
+    TEST_ASSERT(queue_is_full(Q));
+    TEST_ASSERT_EQUAL_INT_ARRAY(arr, Q->values, QUEUE_SIZE);
+    TEST_ASSERT_EQUAL_INT(3, Q->front);
+    TEST_ASSERT_EQUAL_INT(2, Q->rear);
+}
+
 int main(void)
 {
     UNITY_BEGIN();
 
     RUN_TEST(test_queue_is_empty);
     RUN_TEST(test_enqueue);
+    RUN_TEST(test_queue_is_full_wo_wrapping);
 
     return UNITY_END();
 }
