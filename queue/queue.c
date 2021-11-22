@@ -9,9 +9,9 @@ Queue *queue_create(int max_queue_size)
     Queue *Q;
     FAIL_IF(!(Q = malloc(sizeof(Q))), "Queue pointer malloc failure.");
 
-    FAIL_IF(!(Q->values = malloc(sizeof(int) * max_queue_size)), "Queue memory malloc failure.");
-    Q->front = Q->rear = max_queue_size - 1;
-    Q->max_size = max_queue_size;
+    Q->max_size = max_queue_size + 1;  // user wants queue to hold n items, but queue implementation has to allocate space for n + 1
+    FAIL_IF(!(Q->values = malloc(sizeof(int) * Q->max_size)), "Queue memory malloc failure.");
+    Q->front = Q->rear = Q->max_size - 1;
 
     return Q;
 }

@@ -1,7 +1,8 @@
 #include "queue.h"
 #include "unity.h"
 
-#define QUEUE_SIZE 4
+#define QUEUE_SIZE 3
+#define ALLOCATED_SIZE (QUEUE_SIZE + 1)
 
 static Queue *Q;
 static int arr[] = {1, 2, 3};
