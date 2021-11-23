@@ -1,3 +1,4 @@
+DATA_STRUCTURE = queue
 INCLUDE_DIRS = ../unity/ unity/
 VPATH = $(INCLUDE_DIRS)
 
@@ -6,10 +7,10 @@ CFLAGS += $(addprefix -I , $(INCLUDE_DIRS))
 
 all: tests
 
-tests: tests.c queue.o unity.o
+tests: tests.c $(DATA_STRUCTURE).o unity.o
 	$(CC) $(CFLAGS) $^ -o $@
 
-queue.o: queue.c queue.h
+$(DATA_STRUCTURE).o: $(DATA_STRUCTURE).c $(DATA_STRUCTURE).h
 	$(CC) -c $<
 
 unity.o: unity.c unity.h unity_internals.h 
